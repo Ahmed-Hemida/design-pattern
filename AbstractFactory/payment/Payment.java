@@ -1,6 +1,7 @@
 package payment;
 
 public interface Payment {
-    void initPayment();
+    String Authentication();
+    boolean inquery();
     void callBack(int status, String message);
 }

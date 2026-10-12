@@ -1,11 +1,28 @@
 package payment;
 
-public abstract class PaymentService implements Payment {
+public abstract class PaymentService {
 
-    public  initPayment() {
-       
+    private Payment activePayment;
+
+    /** Factory method implemented by each payment provider. */
+    protected abstract Payment getPayment();
+
+
+
+    /** Submits the payment through the initialized provider. */
+    public boolean pay() {
+        activePayment = getPayment();
+        return activePayment != null && activePayment.Authentication() != null;
     }
 
 
-    public abstract void callBack(int status, String message);
+    /** Receives the provider's P2P callback and forwards it to the payment. */
+    public void callBack(int status, String message) {
+        Payment payment = activePayment;
+        if (payment == null) {
+            System.out.println("Callback received before payment initialization.");
+            return;
+        }
+        payment.callBack(status, message);
+    }
 }
