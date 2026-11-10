@@ -17,6 +17,8 @@ public class DecoratorDesignPattern {
 
         // Create a gas transaction service
         TransactionService gasProvider = new GasTransactionService();
+        // gasProvider.serveTransaction(tx);
+        // System.out.println("Gas Transaction Service created: " + gasProvider.toString());
 
         // Wrap the gas transaction service with the decorator
         TransactionService gasDecorator = new GasServiceDecorator(gasProvider);
@@ -24,7 +26,7 @@ public class DecoratorDesignPattern {
         // // Serve the transaction using the decorated service provider
         Transaction resultTx = gasDecorator.serveTransaction(tx);
 
-        // // Print the result transaction
+        // Print the result transaction
         System.out.println("Result Transaction: " + resultTx);
     }
 
