@@ -15,9 +15,12 @@ public class CompositeDesignPattern {
         Father father2 = new Father().setChileds(List.of(student3));
 
         Salesman salesman = new Salesman(List.of(father1, father2, student4));
-        Teacher teacher = new Teacher(List.of(student5, student6));
+        Teacher teacher1 = new Teacher(List.of(student5, student6));
+        Teacher teacher2 = new Teacher(List.of(student1, student2, student3));
 
-        accountant accountant = new accountant(List.of(salesman, teacher));
+        accountant accountant = new accountant(List.of(salesman, teacher1, teacher2
+            
+        ));
 
         // System.out.println("Total Salary: " + salesman.getSalary());
         System.out.println("Total Payable: " + accountant.getSalary());
